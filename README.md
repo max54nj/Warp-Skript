@@ -12,7 +12,10 @@ Commands:
 - /warp set <Ort> - Setzt diesen Ort zu deinen Kordinaten.
 - /warp set <ort> wa <on/off> - Schaltet den Wartungs modus an.
 
-
+|
+|
+|
+|
 
 A Minecraft warp script.
 
