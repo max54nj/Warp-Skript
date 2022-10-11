@@ -1,8 +1,213 @@
-hfg
-  hioshgfgdfhg
-    üdfogifigfd
-      öhfghyü
-        dsuighguisd
-        y+ rhgf
-      ü<sdogh+gihfdg
-  ui<gfpghp<fgfgöf
+#-----------------------------------------------------------------------#
+#	>>>	Warp system
+#-----------------------------------------------------------------------#
+#	Author:		Max54nj
+#	Version:	1.0
+#-----------------------------------------------------------------------#
+options:
+	p: &7[&3Bot54nj&7] &8>
+	perm: &7[&3Bot54nj&7] &8> &cDu hast keine Berechtigung dafür!
+#-----------------------------------------------------------------------#
+
+on load:
+	set {warp.Bedwars.wa} to false
+	set {warp.Survival.wa} to false
+	set {warp.skywars.wa} to false
+	set {warp.skyblck.wa} to false
+	set {warp.duelle.wa} to false
+	set {warp.challenges.wa} to false
+	set {warp.Citybuild.wa} to false
+	set {warp.vipworld.wa} to false
+	set {warp.lobby.1.wa} to false
+	set {warp.lobby.2.wa} to false
+	set {warp.lobby.3.wa} to false
+	set {warp.lobby.4.wa} to false
+	set {warp.lobby.5.wa} to false
+	set {warp.Spawn.Bedwars.wa} to false
+	set {warp.Spawn.Survival.wa} to false
+	set {warp.Spawn.skywars.wa} to false
+	set {warp.Spawn.skyblck.wa} to false
+	set {warp.Spawn.duelle.wa} to false
+	set {warp.Spawn.challenges.wa} to false
+	set {warp.Spawn.Citybuild.wa} to false
+	set {warp.Spawn.vipworld.wa} to false
+
+
+
+command /warp [<text>] [<text>] [<text>] [<text>] [<text>]:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		if arg 1 is set:
+			if arg 1 is "set":
+				if player has permission "warp.set":
+					if arg 2 is set:
+						if arg 2 is "wa" or "wartung" or "wartungsarbeiten":
+							if player has permission "warp.wa":
+								if arg 3 is set:
+									if arg 3 is "Lobby":
+										if arg 4 is set:
+											if arg 4 is "1" or "2" or "3" or "4" or "5":
+												if arg 5 is "on" or "an":
+													set {warp.lobby.%arg-4%.wa} to true
+													send "{@p} &aWartungsarbeiten wurden erfolgreich &2eigeschaltet."
+
+												if arg 5 is "off" or "aus":
+													set {warp.lobby.%arg-4%.wa} to false
+													send "{@p} &aWartungsarbeiten wurden erfolgreich &4ausgeschaltet."
+
+									if arg 3 is "Spawn":
+										if arg 4 is "on" or "an":
+											set {warp.Spawn.%world%.wa} to true
+											send "{@p} &aWartungsarbeiten wurden erfolgreich &2eigeschaltet."
+
+										if arg 4 is "aus" or "off":
+											set {warp.Spawn.%world%.wa} to false
+											send "{@p} &aWartungsarbeiten wurden erfolgreich &4ausgeschaltet."
+
+									if arg 3 is "Bedwars" or "Survival" or "Skywars" or "SkyBlock" or "Duelle" or "challenges" or "Citybuild" or "vipworld":
+										if arg 4 is "on" or "an":
+											set {warp.%arg-3%.wa} to true
+											send "{@p} &aWartungsarbeiten wurden erfolgreich &2eigeschaltet."
+
+										if arg 4 is "aus" or "off":
+											set {warp.%arg-3%.wa} to false
+											send "{@p} &aWartungsarbeiten wurden erfolgreich &4ausgeschaltet."
+
+										else:
+											send "{@p} &cBenutze: /warp set <name> wa <an/off>."
+
+									else:
+										send "{@p} &cBenutze: /warp set <name> wa <an/off>."
+
+								else:
+									send "{@p} &cBenutze: /warp set <name> wa <on/off>."
+#-----------------------------------------------------------------------#
+						if arg 2 is "Lobby":
+							if arg 3 is "1" or "2" or "3" or "4" or "5":
+								set {warp.lobby.%arg-3%} to location of player
+								send "{@p} &2Lobby %arg-3% &awurde erfolgreich gesetzt."
+
+						if arg 2 is "Spawn":
+							set {warp.Spawn.%world%} to location of player
+							send "{@p} &2%arg-2% &ain &2%world% &awurde erfolgreich gesetzt."
+
+						if arg 2 is "Bedwars" or "Survival" or "Skywars" or "SkyBlock" or "Duelle" or "challenges" or "Citybuild" or "vipworld":
+							set {warp.%arg-2%} to location of player
+							send "{@p} &2%arg-2% &awurde erfolgreich gesetzt."
+#-----------------------------------------------------------------------#
+			if arg 1 is "Bedwars" or "Survival" or "Skywars" or "SkyBlock" or "Duelle" or "challenges" or "Citybuild":
+				if {warp.%arg-1%.wa} is true:
+					send "{@p} &4%arg-1% &cbefindet sich gerade in Wartungsarbeiten"
+				if {warp.%arg-1%.wa} is false:
+					teleport player to {warp.%arg-1%}
+
+			if arg 1 is "Lobby":
+				if {warp.lobby.%arg-2%.wa} is true:
+					send "{@p} &4%arg-1% &cbefindet sich gerade in Wartungsarbeiten"
+				if {warp.lobby.%arg-2%.wa} is false:
+					if arg 2 is "1" or "2" or "3" or "4" or "5":
+						teleport player to {warp.lobby.%arg-2%}
+
+
+			if arg 1 is "Spawn":
+				if {warp.%world%.%arg-1%.wa} is true:
+					send "{@p} &4%arg-1% &cbefindet sich gerade in Wartungsarbeiten"
+				if {warp.%world%.%arg-1%.wa} is false:
+					teleport player to {warp.spawn.%world%}
+
+			if arg 1 is "vipworld":
+				if player has permission "warp.vipworld":
+					if {warp.vipworld.wa} is true:
+						send "{@p} &4%arg-1% &cbefindet sich gerade in Wartungsarbeiten"
+					if {warp.vipworld.wa} is false:
+						teleport player to {warp.vipworld}
+#-----------------------------------------------------------------------#
+
+			if arg 1 is "list" or "liste":
+				send "{@p} &aHier sind alle Orte aufgelistet:"
+				send "    &8| &7- Lobby"
+				send "    &8| &7- Spawn"
+				send "    &8| &7- Bedwars"
+				send "    &8| &7- Survival"
+				send "    &8| &7- Skywars"
+				send "    &8| &7- Skyblock"
+				send "    &8| &7- Duelle"
+				send "    &8| &7- challenges"
+				send "    &8| &7- Citybuild"
+				if player has permission "warp.vipworld":
+					send "    &8| &7- vipworld"
+#-----------------------------------------------------------------------#
+
+
+		else:
+			if player has permission "warp.set":
+				send "{@p} &cBenutze: /warp set <name>."
+				send "{@p} &cBenutze: /warp <Ort>."
+				send "{@p} &aBenutze: &2*/warp list*&a um alle Orte zu sehen"
+			else:
+				send "{@p} &cBenutze: /warp <Ort>."
+				send "{@p} &aBenutze: &2*/warp list*&a um alle Orte zu sehen"
+
+#-----------------------------------------------------------------------#
+command /Lobby [<text>]:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		if arg 1 is "1" or "2" or "3" or "4" or "5":
+			teleport player to {warp.lobby.%arg-1%}
+
+command /Bedwars:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.Bedwars}
+
+command /survival:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.survival}
+
+command /spawn:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.Spawn.%world%}
+
+command /vipworld:
+	permission: warp.vipworld
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.vipworld}
+
+command /skywars:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.skywars}
+
+command /skyblock:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.skyblock}
+
+command /duelle:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.duelle}
+
+command /challenges:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.challenges}
+
+command /citybuild:
+	permission: warp
+	permission message: {@perm}
+	trigger:
+		teleport player to {warp.citybuild}
+#-----------------------------------------------------------------------#
