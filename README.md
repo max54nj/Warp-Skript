@@ -7,7 +7,7 @@ Funktionen:
 
 Commands:
 - /warp list - Zeigt eine Liste mit allen Orten.
-- /warp *Ort* - teleportiert dich zu diesem Orte.
+- /warp 'Ort' - teleportiert dich zu diesem Orte.
 - /*ort* - Kurzform  von "/warp *Ort*".
 - /warp set *Ort* - Setzt diesen Ort zu deinen Kordinaten.
 - /warp set *ort* wa *on/off* - Schaltet den Wartungs modus an.
