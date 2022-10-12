@@ -8,9 +8,9 @@ Funktionen:
 Commands:
 - /warp list - Zeigt eine Liste mit allen Orten.
 - /warp 'Ort' - teleportiert dich zu diesem Orte.
-- /*ort* - Kurzform  von "/warp *Ort*".
-- /warp set *Ort* - Setzt diesen Ort zu deinen Kordinaten.
-- /warp set *ort* wa *on/off* - Schaltet den Wartungs modus an.
+- /'ort' - Kurzform  von "/warp 'Ort'".
+- /warp set 'Ort' - Setzt diesen Ort zu deinen Kordinaten.
+- /warp set 'Ort' wa 'on/off' - Schaltet den Wartungs modus an.
 
 
 
@@ -22,7 +22,7 @@ Features:
 
 commands:
 - /warp list - Shows a list of all locations.
-- /warp *location* - teleports you to this location.
-- /*location* - short form of "/warp *location*".
-- /warp set *location* - Sets this location to your coordinates.
-- /warp set *ort* wa *on/off* - Turns on maintenance mode.
+- /warp 'location' - teleports you to this location.
+- /'location' - short form of "/warp 'location'".
+- /warp set 'location' - Sets this location to your coordinates.
+- /warp set 'ort' wa 'on/off' - Turns on maintenance mode.
